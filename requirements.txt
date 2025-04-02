@@ -1,0 +1,8 @@
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+# xgboost  # If using XGBoost
+# lightgbm  # If using LightGBM
+# joblib  # For saving/loading models
