@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g  # Allocate 1 GB heap for Elasticsearch
+    ports:
+      - "9200:9200"
+    networks:
+      - elk
+    mem_limit: 2g  # Allocate up to 2 GB of total memory
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.1
+    container_name: logstash
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5044:5044"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    mem_limit: 1g  # Allow Logstash to use up to 1 GB
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.1
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    mem_limit: 1g  # Allow Kibana to use up to 1 GB
+
+networks:
+  elk:
+    driver: bridge

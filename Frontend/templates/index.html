@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Model Predictor</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://www.iiitb.ac.in/includefiles/photos/medium/Adrij_IMT2019004_(37).jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    label {
+        display: block;
+        margin: 15px 0 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.3); /* Transparent */
+        color: #000;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        backdrop-filter: blur(3px);
+    }
+
+    input::placeholder {
+        color: #444;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .result {
+        text-align: center;
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #e7f4e4;
+        border: 1px solid #c3e6cb;
+        border-radius: 6px;
+        color: #155724;
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Bank Term Deposit Prediction</h1>
+
+        <form method="post">
+            <label>Age:</label>
+            <input type="number" name="age" required>
+
+            <label>Balance:</label>
+            <input type="number" name="balance" required>
+
+            <label>Default:</label>
+            <select name="default">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label>Housing:</label>
+            <select name="housing">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label>Loan:</label>
+            <select name="loan">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label>Job:</label>
+            <select name="job">
+                <option value="admin.">admin.</option>
+                <option value="blue-collar">blue-collar</option>
+                <option value="entrepreneur">entrepreneur</option>
+                <option value="housemaid">housemaid</option>
+                <option value="management">management</option>
+                <option value="retired">retired</option>
+                <option value="self-employed">self-employed</option>
+                <option value="services">services</option>
+                <option value="student">student</option>
+                <option value="technician">technician</option>
+                <option value="unemployed">unemployed</option>
+                <option value="unknown">unknown</option>
+            </select>
+
+            <label>Marital:</label>
+            <select name="marital">
+                <option value="married">married</option>
+                <option value="single">single</option>
+                <option value="divorced">divorced</option>
+            </select>
+
+            <label>Education:</label>
+            <select name="education">
+                <option value="primary">primary</option>
+                <option value="secondary">secondary</option>
+                <option value="tertiary">tertiary</option>
+                <option value="unknown">unknown</option>
+            </select>
+
+            <label>Contact:</label>
+            <select name="contact">
+                <option value="cellular">cellular</option>
+                <option value="telephone">telephone</option>
+                <option value="unknown">unknown</option>
+            </select>
+
+            <label>Month:</label>
+            <select name="month">
+                <option value="jan">jan</option>
+                <option value="feb">feb</option>
+                <option value="mar">mar</option>
+                <option value="apr">apr</option>
+                <option value="may">may</option>
+                <option value="jun">jun</option>
+                <option value="jul">jul</option>
+                <option value="aug">aug</option>
+                <option value="sep">sep</option>
+                <option value="oct">oct</option>
+                <option value="nov">nov</option>
+                <option value="dec">dec</option>
+            </select>
+
+            <label>Poutcome:</label>
+            <select name="poutcome">
+                <option value="success">success</option>
+                <option value="failure">failure</option>
+                <option value="other">other</option>
+                <option value="unknown">unknown</option>
+            </select>
+
+            <label>Model:</label>
+            <select name="model">
+                <option value="log_reg">Logistic Regression</option>
+                <option value="gnb">Naive Bayes</option>
+                <option value="dt">Decision Tree</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+            <div class="result">
+                <h2>Prediction Result:</h2>
+                <p><strong>Subscribed:</strong> {{ "Yes" if result == 1 else "No" }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
