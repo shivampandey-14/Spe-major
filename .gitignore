@@ -1,17 +1,37 @@
-*.ipynb_checkpoints
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
 *.log
+
+# Python cache and compiled files
+__pycache__/
 *.py[cod]
-*.pyc
 *.pyd
 *.pyo
+
+# Shared object files (compiled libs)
 *.so
+
+# macOS and Windows junk files
 .DS_Store
-.env/
-.idea/
-.venv/
-.vscode/
-Backend/models/
 Thumbs.db
-__pycache__/
+
+# Virtual environments
+.env/
+.venv/
 myenv/
 venv/
+
+# IDE and editor settings
+.idea/
+.vscode/
+
+# Model binaries and data outputs (if applicable)
+Backend/models/
+
+# Environment config files (optional — if you don’t want to upload them)
+.env
+
+# Conda environments (optional)
+conda-meta/
